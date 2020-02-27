@@ -136,4 +136,24 @@ public class TodoControllerSpec {
     assertEquals(db.getCollection("todos").countDocuments(), JavalinJson.fromJson(result, Todo[].class).length);
   }
 
+  @Test
+  public void GetTodosByCategory() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("category=software design");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/users");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertEquals(37, todo.category); // Every user should be age 37
+    }
+  }
+
 }
