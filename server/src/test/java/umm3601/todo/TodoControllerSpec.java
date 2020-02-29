@@ -87,19 +87,19 @@ public class TodoControllerSpec {
     "                    owner: \"Chris\",\n" +
     "                    status: false,\n" +
     "                    body: \"some text\",\n" +
-    "                    category: \"mobile\",\n" +
+    "                    category: \"chair\",\n" +
     "                }"));
     testTodos.add(Document.parse("{\n" +
     "                    owner: \"Audrey\",\n" +
     "                    status: true,\n" +
     "                    body: \"another text\",\n" +
-    "                    category: \"desktop\",\n" +
+    "                    category: \"software design\",\n" +
     "                }"));
     testTodos.add(Document.parse("{\n" +
     "                    owner: \"Johannes\",\n" +
     "                    status: true,\n" +
     "                    body: \"a third text\",\n" +
-    "                    category: \"server\",\n" +
+    "                    category: \"desk\",\n" +
     "                }"));
 
     samsId = new ObjectId();
@@ -107,7 +107,7 @@ public class TodoControllerSpec {
     sam = sam.append("owner", "Sam")
       .append("status", false)
       .append("body", "no text")
-      .append("category", "client");
+      .append("category", "software design");
 
 
     todoDocuments.insertMany(testTodos);
@@ -143,7 +143,7 @@ public class TodoControllerSpec {
     mockReq.setQueryString("category=software design");
 
     // Create our fake Javalin context
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/users");
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
 
     todoController.getTodos(ctx);
 
@@ -152,7 +152,7 @@ public class TodoControllerSpec {
     String result = ctx.resultString();
 
     for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
-      assertEquals(37, todo.category); // Every user should be age 37
+      assertEquals("software design", todo.category); // Every todo should be of the software design category
     }
   }
 
