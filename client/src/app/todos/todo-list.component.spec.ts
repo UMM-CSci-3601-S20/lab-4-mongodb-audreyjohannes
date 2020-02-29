@@ -1,4 +1,4 @@
-/*
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -47,7 +47,7 @@ describe('Todo list', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [COMMON_IMPORTS],
-      declarations: [TodoListComponent, TodoCardComponent],
+      declarations: [TodoListComponent],
       // providers:    [ TodoService ]  // NO! Don't provide the real service!
       // Provide a test-double instead
       providers: [{ provide: TodoService, useValue: new MockTodoService() }]
@@ -66,21 +66,14 @@ describe('Todo list', () => {
     expect(todoList.serverFilteredTodos.length).toBe(3);
   });
 
-  it('contains a todo named \'Chris\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.name === 'Chris')).toBe(true);
+  it('contains a todo owned by \'thomas\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'thomas')).toBe(true);
   });
 
-  it('contain a todo named \'Jamie\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.name === 'Jamie')).toBe(true);
+  it('contain a todo owned by \'mark\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'mark')).toBe(true);
   });
 
-  it('doesn\'t contain a todo named \'Santa\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.name === 'Santa')).toBe(false);
-  });
-
-  it('has two todos that are 37 years old', () => {
-    expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.age === 37).length).toBe(2);
-  });
 });
 
 describe('Misbehaving Todo List', () => {
@@ -125,4 +118,3 @@ describe('Misbehaving Todo List', () => {
     expect(todoList.serverFilteredTodos).toBeUndefined();
   });
 });
-*/
