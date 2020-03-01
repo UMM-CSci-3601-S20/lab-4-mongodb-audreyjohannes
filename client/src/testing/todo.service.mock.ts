@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Todo } from '../app/todos/todo';
 import { TodoService } from '../app/todos/todo.service';
+import { Todo } from 'src/app/todos/todo';
 
 /**
  * A "mock" version of the `TodoService` that can be used to test components
@@ -11,34 +11,33 @@ import { TodoService } from '../app/todos/todo.service';
 export class MockTodoService extends TodoService {
   static testTodos: Todo[] = [
     {
-      _id: 'thomas_id',
-      owner: 'thomas',
-      status: true,
-      body: 'You are tasked with doing a speedrun of the 1997 video game "GoldenEye" for the Nintendo 64 console.',
-      category: 'video games'
-  },
-  {
-      _id: 'mark_id',
-      owner: 'mark',
+      _id: 'chris_id',
+      owner: 'Chris',
       status: false,
-      body: 'Tonight is game night. You have to bring one of the following: (1) super smash bros; (2) mario party; (3) goldeneye.',
-      category: 'video games'
-  },
-  {
-      _id: 'thomas_id',
-      owner: 'thomas',
+      body: 'some text',
+      category: 'chair',
+    },
+    {
+      _id: 'audrey_id',
+      owner: 'Audrey',
       status: true,
-      body: 'You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.',
-      category: 'adulting'
-  }
+      body: 'another text',
+      category: 'software design',
+    },
+    {
+      _id: 'johannes_id',
+      owner: 'Johannes',
+      status: true,
+      body: 'a third text',
+      category: 'desk',
+    },
   ];
 
   constructor() {
     super(null);
   }
 
-  getTodos(filters?: { status?: string, contains?: string, owner?: string, category?: string,
-    orderBy?: string, limit?: string }): Observable<Todo[]> {
+  getTodos(filters: { category?: string }): Observable<Todo[]> {
     // Just return the test todos regardless of what filters are passed in
     return of(MockTodoService.testTodos);
   }

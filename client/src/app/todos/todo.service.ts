@@ -12,27 +12,12 @@ export class TodoService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getTodos(filters?: { status?: string, contains?: string, owner?: string, category?: string,
-    orderBy?: string, limit?: string }): Observable<Todo[]> {
+  getTodos(filters?: { category?: string}): Observable<Todo[]> {
     let httpParams: HttpParams = new HttpParams();
     if (filters) {
-      if (filters.status) {
-        httpParams = httpParams.set('status', filters.status);
-      }
-      if (filters.contains) {
-        httpParams = httpParams.set('contains', filters.contains);
-      }
-      if (filters.owner) {
-        httpParams = httpParams.set('owner', filters.owner);
-      }
+
       if (filters.category) {
         httpParams = httpParams.set('category', filters.category);
-      }
-      if (filters.orderBy) {
-        httpParams = httpParams.set('orderBy', filters.orderBy);
-      }
-      if (filters.limit) {
-        httpParams = httpParams.set('limit', filters.limit);
       }
     }
     return this.httpClient.get<Todo[]>(this.todoUrl, {
@@ -44,11 +29,19 @@ export class TodoService {
     return this.httpClient.get<Todo>(this.todoUrl + '/' + id);
   }
 
-  filterTodos(todos: Todo[], filters: { status?: string, contains?: string, owner?: string, category?: string,
-    orderBy?: string, limit?: string  }): Todo[] {
+  filterTodos(todos: Todo[], filters: {  category?: string  }): Todo[] {
 
     let filteredTodos = todos;
 
+
+    // Filter by category
+    if (filters.category) {
+      filters.category = filters.category.toLowerCase();
+
+      filteredTodos = filteredTodos.filter(todo => {
+        return todo.category.toLowerCase().indexOf(filters.category) !== -1;
+      });
+    }
     return filteredTodos;
   }
 }

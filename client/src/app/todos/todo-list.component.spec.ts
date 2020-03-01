@@ -1,4 +1,3 @@
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +18,6 @@ import { MockTodoService } from '../../testing/todo.service.mock';
 import { Todo } from './todo';
 import { TodoListComponent } from './todo-list.component';
 import { TodoService } from './todo.service';
-import { MatIconModule } from '@angular/material/icon';
 
 const COMMON_IMPORTS: any[] = [
   FormsModule,
@@ -34,7 +32,6 @@ const COMMON_IMPORTS: any[] = [
   MatListModule,
   MatDividerModule,
   MatRadioModule,
-  MatIconModule,
   BrowserAnimationsModule,
   RouterTestingModule,
 ];
@@ -66,14 +63,17 @@ describe('Todo list', () => {
     expect(todoList.serverFilteredTodos.length).toBe(3);
   });
 
-  it('contains a todo owned by \'thomas\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'thomas')).toBe(true);
+  it('contains a todo with category \'chair\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.category === 'chair')).toBe(true);
   });
 
-  it('contain a todo owned by \'mark\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'mark')).toBe(true);
+  it('contain a todo with category \'software design\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.category === 'software design')).toBe(true);
   });
 
+  it('doesn\'t contain a todo with category \'Santa\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Santa')).toBe(false);
+  });
 });
 
 describe('Misbehaving Todo List', () => {
