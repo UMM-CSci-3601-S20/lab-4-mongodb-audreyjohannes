@@ -37,10 +37,11 @@ export class MockTodoService extends TodoService {
     super(null);
   }
 
-  getTodos(filters: { category?: string }): Observable<Todo[]> {
+  getTodos(filters: { category?: string, owner?: string }): Observable<Todo[]> {
     // Just return the test todos regardless of what filters are passed in
     return of(MockTodoService.testTodos);
   }
+
 
   getTodoById(id: string): Observable<Todo> {
     // If the specified ID is for the first test todo,
