@@ -10,9 +10,9 @@ import { TodoListComponent } from './todos/todo-list.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'users', component: UserListComponent},
-  {path: 'users/:id', component: UserProfileComponent},
   {path: 'todos', component: TodoListComponent},
   {path: 'users/new', component: AddUserComponent},
+  {path: 'users/:id', component: UserProfileComponent},
 ];
 
 @NgModule({
