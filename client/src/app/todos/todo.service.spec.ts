@@ -54,6 +54,29 @@ describe('Todo service: ', () => {
     },
   ];
 
+  const sortByBody: Todo[] = [
+    {
+        _id: 'thomas_id',
+        owner: 'thomas',
+        status: true,
+        body: 'You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.',
+        category: 'adulting'
+    },
+    {
+        _id: 'thomas_id',
+        owner: 'thomas',
+        status: true,
+        body: 'You are tasked with doing a speedrun of the 1997 video game "GoldenEye" for the Nintendo 64 console.',
+        category: 'video games'
+    },
+    {
+        _id: 'mark_id',
+        owner: 'mark',
+        status: false,
+        body: 'Tonight is game night. You have to bring one of the following: (1) super smash bros; (2) mario party; (3) goldeneye.',
+        category: 'video games'
+    },
+  ];
 
 
   let todoService: TodoService;
@@ -115,8 +138,30 @@ describe('Todo service: ', () => {
     // Check that the request made to that URL was a GET request.
     expect(req.request.method).toEqual('GET');
 
-    // Check that the category parameter was 'video games'
-    expect(req.request.params.get('category')).toEqual('video games');
+    // Check that the category parameter is correct
+    // tslint:disable-next-line: max-line-length
+    expect(req.request.params.get('body')).toEqual('You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.');
+    req.flush(testTodos);
+  });
+
+  it('getTodos() calls api/todos with filter parameter \'body\'', () => {
+
+    // tslint:disable-next-line: max-line-length
+    todoService.getTodos({ body: 'You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.' }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    // Specify that (exactly) one request will be made to the specified URL with the category parameter.
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('body')
+    );
+
+    // Check that the request made to that URL was a GET request.
+    expect(req.request.method).toEqual('GET');
+
+    // Check that the body parameter was 'video games'
+    // tslint:disable-next-line: max-line-length
+    expect(req.request.params.get('body')).toEqual('You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.');
 
     req.flush(testTodos);
   });
