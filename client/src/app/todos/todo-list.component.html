@@ -15,6 +15,12 @@
 
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <!-- Examples of filtering on the server -->
+          <mat-form-field class="input-field">
+            <mat-label>Owner</mat-label>
+            <input matInput id="todo-owner-input" type="string" placeholder="Filter by owner"
+            min="0" max="200" [(ngModel)]="todoOwner" (input)="getTodosFromServer()">
+            <mat-hint>Filtered on Server</mat-hint>
+          </mat-form-field>
 
           <mat-form-field class="input-field">
             <mat-label>Category</mat-label>
