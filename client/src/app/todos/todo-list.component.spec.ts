@@ -84,7 +84,7 @@ describe('Todo list', () => {
   });
 
   it('doesn\'t contain a todo with owner \'tobias\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Santa')).toBe(false);
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'tobias')).toBe(false);
   });
 });
 
