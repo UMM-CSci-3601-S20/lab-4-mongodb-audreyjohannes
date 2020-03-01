@@ -156,25 +156,6 @@ public class TodoControllerSpec {
     }
   }
 
-  @Test
-  public void GetTodosByOwner() throws IOException {
-
-    // Set the query string to test with
-    mockReq.setQueryString("owner=Audrey");
-
-    // Create our fake Javalin context
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
-
-    todoController.getTodos(ctx);
-
-    assertEquals(200, mockRes.getStatus()); // The response status should be 200
-
-    String result = ctx.resultString();
-
-    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
-      assertEquals("Audrey", todo.owner); // There exists an owner named another
-    }
-  }
 
   @Test
   public void NonExistentOwner() throws IOException {

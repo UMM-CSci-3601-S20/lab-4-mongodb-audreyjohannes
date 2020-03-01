@@ -140,14 +140,14 @@ describe('Todo service: ', () => {
 
     // Check that the category parameter is correct
     // tslint:disable-next-line: max-line-length
-    expect(req.request.params.get('body')).toEqual('You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.');
+    expect(req.request.params.get('category')).toEqual('video games');
     req.flush(testTodos);
   });
 
   it('getTodos() calls api/todos with filter parameter \'body\'', () => {
 
     // tslint:disable-next-line: max-line-length
-    todoService.getTodos({ body: 'You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.' }).subscribe(
+    todoService.getTodos({ body: 'You are tasked with completing your taxes for 2019. You can use TurboTax, HR Block, or a CPA.'}).subscribe(
       todos => expect(todos).toBe(testTodos)
     );
 
