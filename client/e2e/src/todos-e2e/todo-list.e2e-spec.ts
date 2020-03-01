@@ -13,23 +13,23 @@ describe('Todo list', () => {
     expect(page.getTodoTitle()).toEqual('Todos');
   });
 
-  it('Should type something in the owner filter and check that it returned correct elements', () => {
-    page.typeInput('todo-owner-input', 'Blanche');
+  // it('Should type something in the owner filter and check that it returned correct elements', () => {
+  //   page.typeInput('todo-owner-input', 'Blanche');
 
-    // All of the todo list items should have the owner we are filtering by
-    page.getTodoListItems().each(e => {
-      expect(e.element(by.className('todo-list-owner')).getText()).toEqual('Owner: Blanche');
-    });
-  });
+  //   // All of the todo list items should have the owner we are filtering by
+  //   page.getTodoListItems().each(e => {
+  //     expect(e.element(by.className('todo-list-owner')).getText()).toEqual('Owner: Blanche');
+  //   });
+  // });
 
-  it('Should type something in the owner filter and check that it returned correct elements', () => {
-    page.typeInput('todo-owner-input', 'blaNchE');
+  // it('Should type something in the owner filter and check that it returned correct elements', () => {
+  //   page.typeInput('todo-owner-input', 'blaNchE');
 
-    // All of the todo list items should have the owner we are filtering by
-    page.getTodoListItems().each(e => {
-      expect(e.element(by.className('todo-list-owner')).getText()).toEqual('Owner: Blanche');
-    });
-  });
+  //   // All of the todo list items should have the owner we are filtering by
+  //   page.getTodoListItems().each(e => {
+  //     expect(e.element(by.className('todo-list-owner')).getText()).toEqual('Owner: Blanche');
+  //   });
+  // });
 
 
   it('Should type something in the category filter and check that it returned correct elements', () => {

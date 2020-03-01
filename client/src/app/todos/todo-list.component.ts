@@ -36,6 +36,7 @@ export class TodoListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todoService.getTodos({
+      owner: this.todoOwner,
       category: this.todoCategory,
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
@@ -56,7 +57,7 @@ export class TodoListComponent implements OnInit {
     //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
     // } else {
       this.filteredTodos = this.todoService.filterTodos(
-        this.serverFilteredTodos, { category: this.todoCategory });
+        this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory });
    // }
   }
 
