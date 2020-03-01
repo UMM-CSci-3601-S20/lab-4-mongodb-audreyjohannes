@@ -76,11 +76,11 @@ describe('Todo list', () => {
   });
 
   it('contains a todo with owner \'thomas\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'chair')).toBe(true);
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'thomas')).toBe(true);
   });
 
   it('contain a todo with owner \'mark\'', () => {
-    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'software design')).toBe(true);
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'mark')).toBe(true);
   });
 
   it('doesn\'t contain a todo with owner \'tobias\'', () => {
