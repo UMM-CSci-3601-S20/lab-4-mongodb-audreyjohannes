@@ -140,7 +140,7 @@ public class TodoControllerSpec {
   public void GetTodosByCategory() throws IOException {
 
     // Set the query string to test with
-    mockReq.setQueryString("category=software design");
+    mockReq.setQueryString("category=desktop");
 
     // Create our fake Javalin context
     Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
@@ -150,7 +150,6 @@ public class TodoControllerSpec {
     assertEquals(200, mockRes.getStatus()); // The response status should be 200
 
     String result = ctx.resultString();
-
     for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
       assertEquals("software design", todo.category); // Every todo should be of the software design category
     }
