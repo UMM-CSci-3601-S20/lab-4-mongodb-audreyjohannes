@@ -74,6 +74,18 @@ describe('Todo list', () => {
   it('doesn\'t contain a todo with category \'Santa\'', () => {
     expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Santa')).toBe(false);
   });
+
+  it('contains a todo with owner \'thomas\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'chair')).toBe(true);
+  });
+
+  it('contain a todo with owner \'mark\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'software design')).toBe(true);
+  });
+
+  it('doesn\'t contain a todo with owner \'tobias\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Santa')).toBe(false);
+  });
 });
 
 describe('Misbehaving Todo List', () => {
