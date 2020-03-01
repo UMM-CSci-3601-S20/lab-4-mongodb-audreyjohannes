@@ -63,7 +63,7 @@ const MATERIAL_MODULES: any[] = [
     UserCardComponent,
     UserProfileComponent,
     AddUserComponent,
-    TodoListComponent
+    TodoListComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +78,7 @@ const MATERIAL_MODULES: any[] = [
   ],
   providers: [
     UserService,
-    TodoService
+    TodoService,
   ],
   bootstrap: [AppComponent]
 })

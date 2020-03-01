@@ -39,11 +39,27 @@ export class TodoListComponent implements OnInit {
       category: this.todoCategory,
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
-      // this.updateFilter();
+      this.updateFilter();
     }, err => {
       console.log(err);
     });
   }
+
+ public updateFilter() {
+    // if (this.todoStatus === 'complete') {
+    //   this.filteredTodos = this.todoService.filterTodos(
+    //     this.serverFilteredTodos, { status: 'complete', contains: this.todoBody,
+    //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
+    // } else if (this.todoStatus === 'incomplete') {
+    //   this.filteredTodos = this.todoService.filterTodos(
+    //     this.serverFilteredTodos, { status: 'incomplete', contains: this.todoBody,
+    //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
+    // } else {
+      this.filteredTodos = this.todoService.filterTodos(
+        this.serverFilteredTodos, { category: this.todoCategory });
+   // }
+  }
+
 
 
   /**
