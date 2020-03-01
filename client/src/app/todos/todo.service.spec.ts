@@ -147,7 +147,7 @@ describe('Todo service: ', () => {
 
   it('getTodos() calls api/todos with filter parameter \'owner\'', () => {
 
-    todoService.getTodos({ owner: 'mark' }).subscribe(
+    todoService.getTodos({ owner: 'thomas' }).subscribe(
       todos => expect(todos).toBe(testTodos)
     );
 
@@ -160,7 +160,7 @@ describe('Todo service: ', () => {
     expect(req.request.method).toEqual('GET');
 
     // Check that the owner parameter was 'mark'
-    expect(req.request.params.get('owner')).toEqual('mark');
+    expect(req.request.params.get('owner')).toEqual('thomas');
 
     req.flush(testTodos);
   });
