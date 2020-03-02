@@ -10,13 +10,19 @@
       [attr.tabindex]="routerLinkActiveInstance.isActive ? 0 : -1"
       [routerLinkActiveOptions]="{exact: true}" (click)="drawer.close()">
       <mat-icon matListIcon>home</mat-icon>
-      Home
+        Home
       </mat-list-item>
 
       <mat-list-item routerLink="/users" routerLinkActive="drawer-list-item-active"
       (click)="drawer.close()">
         <mat-icon matListIcon>people</mat-icon>
         Users
+      </mat-list-item>
+
+      <mat-list-item routerLink="/todos" routerLinkActive="drawer-list-item-active"
+      (click)="drawer.close()">
+        <mat-icon matListIcon>done_outline</mat-icon>
+        Todos
       </mat-list-item>
 
     </mat-nav-list>

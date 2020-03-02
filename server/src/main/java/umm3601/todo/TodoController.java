@@ -92,6 +92,10 @@ public class TodoController {
         filters.add(eq("status", targetAge));
     }
 
+    if (ctx.queryParamMap().containsKey("category")) {
+      filters.add(regex("category", ctx.queryParam("category"), "i"));
+    }
+
     if (ctx.queryParamMap().containsKey("body")) {
       filters.add(regex("body", ctx.queryParam("body"), "i"));
     }
