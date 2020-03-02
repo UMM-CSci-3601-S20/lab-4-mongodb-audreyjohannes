@@ -36,7 +36,7 @@ export class AddTodoComponent implements OnInit {
 
     body: [
       {type: 'required', message: 'Body is required'},
-      {type: 'minlength', message: 'Owner must be at least one character long'},
+      {type: 'minlength', message: 'Owner must be at least two characters long'},
       {type: 'maxlength', message: 'Owner cannot be more than 150 characters long'},
       {type: 'pattern', message: 'Owner must contain only numbers and letters'}
     ],
@@ -44,7 +44,7 @@ export class AddTodoComponent implements OnInit {
     category: [
       {type: 'required', message: 'Category is required' },
       {type: 'pattern', message: 'Owner must contain only numbers and letters'},
-      {type: 'minlength', message: 'Category must be at least one character long'},
+      {type: 'minlength', message: 'Category must be at least two characters long'},
       {type: 'maxlength', message: 'Category cannot be more than 35 characters long'}
     ]
   };
@@ -68,14 +68,14 @@ export class AddTodoComponent implements OnInit {
 
       body: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(1),
+        Validators.minLength(2),
         Validators.maxLength(150),
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
        ])),
 
       category: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.minLength(1),
+        Validators.minLength(2),
         Validators.maxLength(35),
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
       ])),

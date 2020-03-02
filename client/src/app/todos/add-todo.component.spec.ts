@@ -160,7 +160,7 @@ describe('AddTodoComponent', () => {
       expect(bodyControl.valid).toBeTruthy();
     });
 
-    it('should fail on single character body', () => {
+    it('should fail on a pair a single character', () => {
       bodyControl.setValue('x');
       expect(bodyControl.valid).toBeFalsy();
       // Annoyingly, Angular uses lowercase 'l' here
@@ -169,7 +169,7 @@ describe('AddTodoComponent', () => {
     });
 
     it('should fail on really long body', () => {
-      bodyControl.setValue('x'.repeat(100));
+      bodyControl.setValue('x'.repeat(155));
       expect(bodyControl.valid).toBeFalsy();
       // Annoyingly, Angular uses lowercase 'l' here
       // when it's an upper case 'L' in `Validators.maxLength(2)`.
@@ -207,7 +207,7 @@ describe('AddTodoComponent', () => {
       expect(categoryControl.valid).toBeTruthy();
     });
 
-    it('should fail on single character category', () => {
+    it('should fail on a single character', () => {
       categoryControl.setValue('x');
       expect(categoryControl.valid).toBeFalsy();
       // Annoyingly, Angular uses lowercase 'l' here
