@@ -2,7 +2,7 @@ package umm3601.todo;
 
 //import static com.mongodb.client.model.Filters.eq;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 // import static org.junit.jupiter.api.Assertions.assertNotNull;
 // import static org.junit.jupiter.api.Assertions.assertThrows;
 // import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -311,5 +311,88 @@ public class TodoControllerSpec {
       assertEquals("software design", todo.category); // Every todo should be of the software design category
     }
   }
+
+  @Test
+  public void GetTodosByOwner() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("owner=Audrey");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertEquals("Audrey", todo.owner); // There exists an owner named Audrey
+    }
+  }
+
+  @Test
+  public void NonExistentOwner() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("owner=John");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertNotEquals("John", todo.owner); // There exists no owner named John
+    }
+  }
+
+
+
+  @Test
+  public void GetTodosByBody() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("body=another text");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertEquals("another text", todo.body);
+    }
+  }
+
+  @Test
+  public void NonExistentBody() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("body=a third text exists?");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertNotEquals("a third text exists?", todo.body); // There exists no body named John
+    }
+  }
+
 
 }

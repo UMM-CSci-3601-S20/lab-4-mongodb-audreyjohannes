@@ -63,6 +63,19 @@ describe('Todo list', () => {
     expect(todoList.serverFilteredTodos.length).toBe(3);
   });
 
+
+  it('contains a todo with owner \'Chris\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Chris')).toBe(true);
+  });
+
+  it('contain a todo with owner \'Audrey\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Audrey')).toBe(true);
+  });
+
+  it('doesn\'t contain a todo with owner \'tobias\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'tobias')).toBe(false);
+  });
+
   it('contains a todo with category \'chair\'', () => {
     expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.category === 'chair')).toBe(true);
   });
@@ -73,6 +86,19 @@ describe('Todo list', () => {
 
   it('doesn\'t contain a todo with category \'Santa\'', () => {
     expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Santa')).toBe(false);
+  });
+
+
+  it('contains a todo with body \'some text\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.body === 'some text')).toBe(true);
+  });
+
+  it('contain a todo with body \'another text\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.body === 'another text')).toBe(true);
+  });
+
+  it('doesn\'t contain a todo with body \'out of ideas\'', () => {
+    expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'out of ideas')).toBe(false);
   });
 });
 
