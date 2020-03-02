@@ -29,6 +29,11 @@ export class AddTodoComponent implements OnInit {
       {type: 'pattern', message: 'Owner must contain only numbers and letters'},
     ],
 
+    status: [
+      { type: 'required', message: 'Status is required' },
+      { type: 'pattern', message: 'Status must be Complete or Incomplete' },
+    ],
+
     body: [
       {type: 'minlength', message: 'Owner must be at least one character long'},
       {type: 'maxlength', message: 'Owner cannot be more than 150 characters long'},
@@ -49,7 +54,7 @@ export class AddTodoComponent implements OnInit {
     // add todo form validations
     this.addTodoForm = this.fb.group({
       // We allow alphanumeric input and limit the length for owner.
-      owner: new FormControl('', Validators.compose([
+      owner: new FormControl('owner', Validators.compose([
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(35),
@@ -57,20 +62,20 @@ export class AddTodoComponent implements OnInit {
       ])),
 
 
-      role: new FormControl('status', Validators.compose([
+      status: new FormControl('status', Validators.compose([
         Validators.required,
         Validators.pattern('^(complete|incomplete)$'),
       ])),
 
 
-      body: new FormControl('', Validators.compose([
+      body: new FormControl('body', Validators.compose([
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(150),
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
        ])),
 
-      category: new FormControl('', Validators.compose([
+      category: new FormControl('category', Validators.compose([
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(35),
