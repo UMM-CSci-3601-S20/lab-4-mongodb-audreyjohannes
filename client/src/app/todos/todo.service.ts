@@ -12,7 +12,7 @@ export class TodoService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getTodos(filters?: { owner?: string, category?: string }): Observable<Todo[]> {
+  getTodos(filters?: { owner?: string, category?: string, status?: boolean }): Observable<Todo[]> {
     let httpParams: HttpParams = new HttpParams();
     if (filters) {
 
@@ -32,7 +32,7 @@ export class TodoService {
     return this.httpClient.get<Todo>(this.todoUrl + '/' + id);
   }
 
-  filterTodos(todos: Todo[], filters: {   owner?: string,  category?: string}): Todo[] {
+  filterTodos(todos: Todo[], filters: { owner?: string,  category?: string, status?: boolean}): Todo[] {
 
     let filteredTodos = todos;
 

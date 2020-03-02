@@ -50,23 +50,23 @@ describe('Todo list', () => {
     });
   });
 
-  // it('Should select an option of the status filter and check that it returned correct elements', () => {
-  //   page.selectMatSelectValue('todo-status-select', 'incomplete');
+   it('Should select an option of the status filter and check that it returned correct elements', () => {
+     page.selectMatSelectValue('todo-status-select', 'incomplete');
 
-  //   // All of the todo list items should have the status we are filtering by
-  //   page.getTodoListItems().each(e => {
-  //     expect(e.element(by.className('todo-list-status')).getText()).toEqual('Status: incomplete');
-  //   });
-  // });
+     // All of the todo list items should have the status we are filtering by
+     page.getTodoListItems().each(e => {
+       expect(e.element(by.className('todo-list-status')).getText()).toEqual('Status: incomplete');
+     });
+   });
 
-  // it('Should select an option of the status filter and check that it returned correct elements', () => {
-  //   page.selectMatSelectValue('todo-status-select', 'complete');
+   it('Should select an option of the status filter and check that it returned correct elements', () => {
+     page.selectMatSelectValue('todo-status-select', 'complete');
 
-  //   // All of the todo list items should have the status we are filtering by
-  //   page.getTodoListItems().each(e => {
-  //     expect(e.element(by.className('todo-list-status')).getText()).toEqual('Status: complete');
-  //   });
-  // });
+     // All of the todo list items should have the status we are filtering by
+     page.getTodoListItems().each(e => {
+       expect(e.element(by.className('todo-list-status')).getText()).toEqual('Status: complete');
+     });
+   });
 
 
   // it('Should select an option of the order filter and check that it returned correct elements (first three)', () => {

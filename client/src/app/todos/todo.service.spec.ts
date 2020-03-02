@@ -165,4 +165,24 @@ describe('Todo service: ', () => {
     req.flush(testTodos);
   });
 
+  it('getTodos() calls api/todos with filter parameter \'status\'', () => {
+
+    todoService.getTodos({ status: true }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    // Specify that (exactly) one request will be made to the specified URL with the status parameter.
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('status')
+    );
+
+    // Check that the request made to that URL was a GET request.
+    expect(req.request.method).toEqual('GET');
+
+    // Check that the status parameter was true
+    expect(req.request.params.get('status')).toEqual('true');
+
+    req.flush(testTodos);
+  });
+
 });
