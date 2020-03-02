@@ -87,9 +87,17 @@ public class TodoController {
 
     List<Bson> filters = new ArrayList<Bson>(); // start with a blank document
 
+    if (ctx.queryParamMap().containsKey("owner")) {
+      filters.add(regex("owner", ctx.queryParam("owner"), "i"));
+    }
+
     if (ctx.queryParamMap().containsKey("status")) {
         int targetAge = ctx.queryParam("status", Integer.class).get();
         filters.add(eq("status", targetAge));
+    }
+
+    if (ctx.queryParamMap().containsKey("category")) {
+      filters.add(regex("category", ctx.queryParam("category"), "i"));
     }
 
     if (ctx.queryParamMap().containsKey("body")) {

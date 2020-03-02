@@ -36,8 +36,6 @@ export class TodoListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todoService.getTodos({
-      status: this.todoStatus,
-      contains: this.todoBody,
       owner: this.todoOwner,
       category: this.todoCategory,
     }).subscribe(returnedTodos => {
@@ -48,21 +46,22 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  public updateFilter() {
-    if (this.todoStatus === 'complete') {
+ public updateFilter() {
+    // if (this.todoStatus === 'complete') {
+    //   this.filteredTodos = this.todoService.filterTodos(
+    //     this.serverFilteredTodos, { status: 'complete', contains: this.todoBody,
+    //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
+    // } else if (this.todoStatus === 'incomplete') {
+    //   this.filteredTodos = this.todoService.filterTodos(
+    //     this.serverFilteredTodos, { status: 'incomplete', contains: this.todoBody,
+    //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
+    // } else {
       this.filteredTodos = this.todoService.filterTodos(
-        this.serverFilteredTodos, { status: 'complete', contains: this.todoBody,
-        owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
-    } else if (this.todoStatus === 'incomplete') {
-      this.filteredTodos = this.todoService.filterTodos(
-        this.serverFilteredTodos, { status: 'incomplete', contains: this.todoBody,
-        owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
-    } else {
-      this.filteredTodos = this.todoService.filterTodos(
-        this.serverFilteredTodos, { contains: this.todoBody,
-        owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
-    }
+        this.serverFilteredTodos, { owner: this.todoOwner, category: this.todoCategory });
+   // }
   }
+
+
 
   /**
    * Starts an asynchronous operation to update the todos list

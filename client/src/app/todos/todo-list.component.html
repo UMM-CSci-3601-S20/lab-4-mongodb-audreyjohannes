@@ -10,53 +10,17 @@
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <!-- Examples of filtering in Angular -->
 
-          <mat-form-field class="input-field">
-            <mat-label>OrderBy</mat-label>
-            <mat-select (selectionChange)="updateFilter()" [(ngModel)]="todoOrderBy" id="todo-orderBy-select">
-              <mat-option>--</mat-option>
-              <mat-option value="owner">Owner</mat-option>
-              <mat-option value="body">Body</mat-option>
-              <mat-option value="status">Status</mat-option>
-              <mat-option value="category">Category</mat-option>
-            </mat-select>
-            <mat-hint>Filtered in Angular</mat-hint>
-          </mat-form-field>
 
-          <mat-form-field class="input-field">
-            <mat-label>Limit</mat-label>
-            <input matInput id="todo-limit-input" type="string" placeholder="Limit todos"
-            min="0" max="200" [(ngModel)]="todoLimit" (input)="updateFilter()">
-            <mat-hint>Filtered in Angular</mat-hint>
-          </mat-form-field>
         </div>
 
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <!-- Examples of filtering on the server -->
-
           <mat-form-field class="input-field">
             <mat-label>Owner</mat-label>
-            <input matInput id="todo-owner-input" placeholder="Filter by owner"
-            [(ngModel)]="todoOwner" (input)="getTodosFromServer()">
+            <input matInput id="todo-owner-input" type="string" placeholder="Filter by owner"
+            min="0" max="200" [(ngModel)]="todoOwner" (input)="getTodosFromServer()">
             <mat-hint>Filtered on Server</mat-hint>
           </mat-form-field>
-
-          <mat-form-field class="input-field">
-            <mat-label>Status</mat-label>
-            <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todoStatus" id="todo-status-select">
-              <mat-option>--</mat-option>
-              <mat-option value="complete">Complete</mat-option>
-              <mat-option value="incomplete">Incomplete</mat-option>
-            </mat-select>
-            <mat-hint>Filtered on Server</mat-hint>
-          </mat-form-field>
-
-          <mat-form-field class="input-field">
-            <mat-label>Body</mat-label>
-            <input matInput id="todo-body-input" type="string" placeholder="Filter by body"
-            min="0" max="200" [(ngModel)]="todoBody" (input)="getTodosFromServer()">
-            <mat-hint>Filtered on Server</mat-hint>
-          </mat-form-field>
-
 
           <mat-form-field class="input-field">
             <mat-label>Category</mat-label>
