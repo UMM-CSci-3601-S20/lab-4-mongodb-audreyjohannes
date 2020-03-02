@@ -15,6 +15,12 @@
 
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <!-- Examples of filtering on the server -->
+          <mat-form-field class="input-field">
+            <mat-label>Owner</mat-label>
+            <input matInput id="todo-owner-input" type="string" placeholder="Filter by owner"
+            min="0" max="200" [(ngModel)]="todoOwner" (input)="getTodosFromServer()">
+            <mat-hint>Filtered on Server</mat-hint>
+          </mat-form-field>
 
           <mat-form-field class="input-field">
             <mat-label>Category</mat-label>
@@ -22,6 +28,18 @@
             min="0" max="200" [(ngModel)]="todoCategory" (input)="getTodosFromServer()">
             <mat-hint>Filtered on Server</mat-hint>
           </mat-form-field>
+
+          <mat-form-field class="input-field">
+            <mat-label>Body</mat-label>
+            <input matInput id="todo-body-input" type="string" placeholder="Filter by body"
+            min="0" max="200" [(ngModel)]="todoBody" (input)="getTodosFromServer()">
+            <mat-hint>Filtered on Server</mat-hint>
+          </mat-form-field>
+
+          <button mat-fab class="add-todo-fab" matTooltip="Add Todo" matTooltipPosition="left" routerLink="/todos/new">
+            <mat-icon class="md-24" aria-label="Add Todo">add</mat-icon>
+          </button>
+
         </div>
         <br>
 
@@ -49,7 +67,6 @@
             </a>
           </mat-nav-list>
         </mat-card-content>
-
 
     </div>
   </div>

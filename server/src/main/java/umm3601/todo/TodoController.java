@@ -87,6 +87,10 @@ public class TodoController {
 
     List<Bson> filters = new ArrayList<Bson>(); // start with a blank document
 
+    if (ctx.queryParamMap().containsKey("owner")) {
+      filters.add(regex("owner", ctx.queryParam("owner"), "i"));
+    }
+
     if (ctx.queryParamMap().containsKey("status")) {
         int targetAge = ctx.queryParam("status", Integer.class).get();
         filters.add(eq("status", targetAge));
@@ -107,5 +111,40 @@ public class TodoController {
       .sort(sortOrder.equals("desc") ?  Sorts.descending(sortBy) : Sorts.ascending(sortBy))
       .into(new ArrayList<>()));
   }
+
+    /**
+   * Get a JSON response with a list of all the todos.
+   *
+   * @param ctx a Javalin HTTP context
+   */
+  public void addNewTodo(Context ctx) {
+    Todo newTodo = ctx.bodyValidator(Todo.class)
+      .check((usr) -> usr.owner != null && usr.owner.length() > 1 && usr.category.length() < 36) //Verify that the todo has a owner that is not blank and is less than 35 characters long
+      .check((usr) -> usr.status == true || false) // Verify that the input is a boolean value
+      .check((usr) -> usr.body != null && usr.body.length() > 0 && usr.body.length() < 151) // Verify that the todo has a body that is not blank and is less than 150 characters long
+      .check((usr) -> usr.category != null && usr.category.length() > 0 && usr.category.length() < 36) // Verify that the todo has a category that is not blank and is less than 35 characters long
+      .get();
+
+    todoCollection.insertOne(newTodo);
+    ctx.status(201);
+    ctx.json(ImmutableMap.of("id", newTodo._id));
+  }
+
+  /**
+   * Utility function to generate the md5 hash for a given string
+   *
+   * @param str the string to generate a md5 for
+   */
+  public String md5(String str) throws NoSuchAlgorithmException {
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    byte[] hashInBytes = md.digest(str.toLowerCase().getBytes(StandardCharsets.UTF_8));
+
+    String result = "";
+    for (byte b : hashInBytes) {
+      result += String.format("%02x", b);
+    }
+    return result;
+  }
+
 
 }
