@@ -119,10 +119,10 @@ public class TodoController {
    */
   public void addNewTodo(Context ctx) {
     Todo newTodo = ctx.bodyValidator(Todo.class)
-      .check((usr) -> usr.owner != null && usr.owner.length() > 0 && usr.category.length() < 35) //Verify that the todo has a owner that is not blank and is less than 35 characters long
+      .check((usr) -> usr.owner != null && usr.owner.length() > 1 && usr.category.length() < 36) //Verify that the todo has a owner that is not blank and is less than 35 characters long
       .check((usr) -> usr.status == true || false) // Verify that the input is a boolean value
-      .check((usr) -> usr.body != null && usr.body.length() > 0 && usr.body.length() < 150) // Verify that the todo has a body that is not blank and is less than 150 characters long
-      .check((usr) -> usr.category != null && usr.category.length() > 0 && usr.category.length() < 35) // Verify that the todo has a category that is not blank and is less than 35 characters long
+      .check((usr) -> usr.body != null && usr.body.length() > 0 && usr.body.length() < 151) // Verify that the todo has a body that is not blank and is less than 150 characters long
+      .check((usr) -> usr.category != null && usr.category.length() > 0 && usr.category.length() < 36) // Verify that the todo has a category that is not blank and is less than 35 characters long
       .get();
 
     todoCollection.insertOne(newTodo);

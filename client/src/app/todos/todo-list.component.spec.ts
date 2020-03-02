@@ -18,6 +18,7 @@ import { MockTodoService } from '../../testing/todo.service.mock';
 import { Todo } from './todo';
 import { TodoListComponent } from './todo-list.component';
 import { TodoService } from './todo.service';
+import { MatIconModule } from '@angular/material/icon';
 
 const COMMON_IMPORTS: any[] = [
   FormsModule,
@@ -34,6 +35,7 @@ const COMMON_IMPORTS: any[] = [
   MatRadioModule,
   BrowserAnimationsModule,
   RouterTestingModule,
+  MatIconModule,
 ];
 
 describe('Todo list', () => {
@@ -45,8 +47,6 @@ describe('Todo list', () => {
     TestBed.configureTestingModule({
       imports: [COMMON_IMPORTS],
       declarations: [TodoListComponent],
-      // providers:    [ TodoService ]  // NO! Don't provide the real service!
-      // Provide a test-double instead
       providers: [{ provide: TodoService, useValue: new MockTodoService() }]
     });
   });

@@ -23,7 +23,7 @@ describe('Todo list', () => {
   });
 
   it('Should type something in the owner filter and check that it returned correct elements', () => {
-    page.typeInput('todo-owner-input', 'blaNchE');
+    page.typeInput('todo-owner-input', 'blANchE');
 
     // All of the todo list items should have the owner we are filtering by
     page.getTodoListItems().each(e => {

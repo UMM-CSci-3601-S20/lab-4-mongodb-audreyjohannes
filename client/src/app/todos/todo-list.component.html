@@ -35,6 +35,11 @@
             min="0" max="200" [(ngModel)]="todoBody" (input)="getTodosFromServer()">
             <mat-hint>Filtered on Server</mat-hint>
           </mat-form-field>
+
+          <button mat-fab class="add-todo-fab" matTooltip="Add Todo" matTooltipPosition="left" routerLink="/todos/new">
+            <mat-icon class="md-24" aria-label="Add Todo">add</mat-icon>
+          </button>
+
         </div>
         <br>
 
@@ -62,7 +67,6 @@
             </a>
           </mat-nav-list>
         </mat-card-content>
-
 
     </div>
   </div>
