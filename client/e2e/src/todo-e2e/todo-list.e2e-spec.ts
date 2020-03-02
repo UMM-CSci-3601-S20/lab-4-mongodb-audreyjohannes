@@ -78,25 +78,25 @@ describe('Todo list', () => {
   //   });
   // });
 
-  // it('Should type something in the body filter and check that it returned correct elements', () => {
-  //   page.typeInput('todo-body-input', 'In sunt ex non tempor cillum commodo');
+  it('Should type something in the body filter and check that it returned correct elements', () => {
+    page.typeInput('todo-body-input', 'In sunt ex non tempor cillum commodo');
 
-  //   // All of the todo list items should have the body we are filtering by
-  //   page.getTodoListItems().each(e => {
-  //     expect(e.element(by.className('todo-list-body')).getText())
-  //     .toEqual('Body: In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.');
-  //   });
-  // });
+    // All of the todo list items should have the body we are filtering by
+    page.getTodoListItems().each(e => {
+      expect(e.element(by.className('todo-list-body')).getText())
+      .toEqual('Body: In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.');
+    });
+  });
 
-  // it('Should type something in the body filter and check that it returned correct elements', () => {
-  //   page.typeInput('todo-body-input', 'In SUNT ex nOn temPOr cillum commodo');
+  it('Should type something in the body filter and check that it returned correct elements', () => {
+    page.typeInput('todo-body-input', 'In SUNT ex nOn temPOr cillum commodo');
 
-  //   // All of the todo list items should have the body we are filtering by
-  //   page.getTodoListItems().each(e => {
-  //     expect(e.element(by.className('todo-list-body')).getText())
-  //     .toEqual('Body: In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.');
-  //   });
-  // });
+    // All of the todo list items should have the body we are filtering by
+    page.getTodoListItems().each(e => {
+      expect(e.element(by.className('todo-list-body')).getText())
+      .toEqual('Body: In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.');
+    });
+  });
 
   // it('Should type something in the limit filter and check that it returned correct elements', () => {
   //   page.typeInput('todo-limit-input', '5');

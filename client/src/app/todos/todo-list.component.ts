@@ -39,6 +39,7 @@ export class TodoListComponent implements OnInit {
       owner: this.todoOwner,
       category: this.todoCategory,
       status: this.todoStatus
+      body: this.todoBody,
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -49,7 +50,7 @@ export class TodoListComponent implements OnInit {
 
  public updateFilter() {
       this.filteredTodos = this.todoService.filterTodos(
-        this.serverFilteredTodos, {owner: this.todoOwner, category: this.todoCategory, status: this.todoStatus});
+        this.serverFilteredTodos, {owner: this.todoOwner, category: this.todoCategory, status: this.todoStatus, body: this.todoBody});
   }
 
 

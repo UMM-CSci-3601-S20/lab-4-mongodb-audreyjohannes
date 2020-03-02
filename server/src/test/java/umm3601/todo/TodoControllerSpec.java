@@ -218,4 +218,45 @@ public class TodoControllerSpec {
 
 
 
+  @Test
+  public void GetTodosByBody() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("body=another text");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertEquals("another text", todo.body);
+    }
+  }
+
+  @Test
+  public void NonExistentBody() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("body=a third text exists?");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertNotEquals("a third text exists?", todo.body); // There exists no body named John
+    }
+  }
+
+
 }
