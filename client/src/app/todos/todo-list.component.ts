@@ -38,8 +38,8 @@ export class TodoListComponent implements OnInit {
     this.todoService.getTodos({
       owner: this.todoOwner,
       category: this.todoCategory,
-      status: this.todoStatus
-      body: this.todoBody,
+      status: this.todoStatus,
+      body: this.todoBody
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();

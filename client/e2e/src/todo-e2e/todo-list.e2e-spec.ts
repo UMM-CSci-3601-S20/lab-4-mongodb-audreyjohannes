@@ -51,7 +51,7 @@ describe('Todo list', () => {
   });
 
    it('Should select an option of the status filter and check that it returned correct elements', () => {
-     page.selectMatSelectValue('todo-status-select', 'incomplete');
+     page.selectMatSelectValue('todo-status-select', 'false');
 
      // All of the todo list items should have the status we are filtering by
      page.getTodoListItems().each(e => {
@@ -60,23 +60,13 @@ describe('Todo list', () => {
    });
 
    it('Should select an option of the status filter and check that it returned correct elements', () => {
-     page.selectMatSelectValue('todo-status-select', 'complete');
+     page.selectMatSelectValue('todo-status-select', 'true');
 
      // All of the todo list items should have the status we are filtering by
      page.getTodoListItems().each(e => {
        expect(e.element(by.className('todo-list-status')).getText()).toEqual('Status: complete');
      });
    });
-
-
-  // it('Should select an option of the order filter and check that it returned correct elements (first three)', () => {
-  //   page.selectMatSelectValue('todo-orderBy-select', 'status');
-  //   page.typeInput('todo-limit-input', '3');
-  //   // All of the todo list items should have the status we are filtering by
-  //   page.getTodoListItems().each(e => {
-  //     expect(e.element(by.className('todo-list-status')).getText()).toEqual('Status: incomplete');
-  //   });
-  // });
 
   it('Should type something in the body filter and check that it returned correct elements', () => {
     page.typeInput('todo-body-input', 'In sunt ex non tempor cillum commodo');
@@ -97,12 +87,4 @@ describe('Todo list', () => {
       .toEqual('Body: In sunt ex non tempor cillum commodo amet incididunt anim qui commodo quis. Cillum non labore ex sint esse.');
     });
   });
-
-  // it('Should type something in the limit filter and check that it returned correct elements', () => {
-  //   page.typeInput('todo-limit-input', '5');
-
-  //   // All of the todo list items should be within the limit we are filtering by
-  //   expect(page.getTodoListItems().count()).toBe(5);
-  // });
-
 });
