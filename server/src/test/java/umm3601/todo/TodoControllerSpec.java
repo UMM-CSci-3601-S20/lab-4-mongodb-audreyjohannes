@@ -218,6 +218,20 @@ public class TodoControllerSpec {
     });
   }
 
+
+  @Test
+  public void AddNoCategoryTodo() throws IOException {
+    String testNewTodo = "{\n\t\"owner\": \"Test Todo\",\n\t\"status\":true,\n\t\"body\": \"test body\",\n\t\"category\": \"\n}";
+    mockReq.setBodyContent(testNewTodo);
+    mockReq.setMethod("POST");
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/new");
+
+    assertThrows(BadRequestResponse.class, () -> {
+      todoController.addNewTodo(ctx);
+    });
+  }
+
+
   @Test
   public void AddInvalidStatusTodo() throws IOException {
     String testNewTodo = "{\n\t\"owner\": \"Test Todo\",\n\t\"status\":\"notABoolean\",\n\t\"body\": \"test body\",\n\t\"category\": \"test category\"\n}";
@@ -232,6 +246,18 @@ public class TodoControllerSpec {
 
   @Test
   public void AddInvalidOwnerTodo() throws IOException {
+    String testNewTodo = "{\n\t\"status\":\"jjaskldfj lj asjflajeioj flaksiowut  34 22j3k fdk wiefjw fjak\",\n\t\"body\": \"test body\",\n\t\"category\": \"test category\"\n}";
+    mockReq.setBodyContent(testNewTodo);
+    mockReq.setMethod("POST");
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/new");
+
+    assertThrows(BadRequestResponse.class, () -> {
+      todoController.addNewTodo(ctx);
+    });
+  }
+
+  @Test
+  public void AddNoOwnerTodo() throws IOException {
     String testNewTodo = "{\n\t\"status\":true,\n\t\"body\": \"test body\",\n\t\"category\": \"test category\"\n}";
     mockReq.setBodyContent(testNewTodo);
     mockReq.setMethod("POST");
@@ -245,6 +271,18 @@ public class TodoControllerSpec {
   @Test
   public void AddInvalidBodyTodo() throws IOException {
     String testNewTodo = "{\n\t\"owner\": \"Test Todo\",\n\t\"status\":true,\n\t\"body\": \"test body ajfklajfalsjfiowejf alsf lsjfwioefj lakjgoiuilj klj asg;hiwopaaipwur wejf fjslkjf j345u8972987 89475 vr khfljsf wioeruwp thkjhaskfaeau roiu sdf sd \",\n\t\"category\": \"test category\"\n}";
+    mockReq.setBodyContent(testNewTodo);
+    mockReq.setMethod("POST");
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/new");
+
+    assertThrows(BadRequestResponse.class, () -> {
+      todoController.addNewTodo(ctx);
+    });
+  }
+
+  @Test
+  public void AddNoBodyTodo() throws IOException {
+    String testNewTodo = "{\n\t\"owner\": \"Test Todo\",\n\t\"status\":true,\n\t\"body\":,\n\t\"category\": \"test category\"\n}";
     mockReq.setBodyContent(testNewTodo);
     mockReq.setMethod("POST");
     Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/new");
