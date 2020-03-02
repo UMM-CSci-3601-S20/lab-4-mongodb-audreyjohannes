@@ -122,6 +122,8 @@ public class TodoControllerSpec {
     mongoClient.close();
   }
 
+
+
   @Test
   public void GetAllTodos() throws IOException {
 
@@ -134,6 +136,43 @@ public class TodoControllerSpec {
 
     String result = ctx.resultString();
     assertEquals(db.getCollection("todos").countDocuments(), JavalinJson.fromJson(result, Todo[].class).length);
+  }
+
+  @Test
+  public void GetTodoWithExistentId() throws IOException {
+
+    String testID = samsId.toHexString();
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/:id", ImmutableMap.of("id", testID));
+    todoController.getTodo(ctx);
+
+    assertEquals(200, mockRes.getStatus());
+
+    String result = ctx.resultString();
+    Todo resultTodo = JavalinJson.fromJson(result, Todo.class);
+
+    assertEquals(resultTodo._id, samsId.toHexString());
+    assertEquals(resultTodo.owner, "Sam");
+  }
+
+  @Test
+  public void GetTodoWithBadId() throws IOException {
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/:id", ImmutableMap.of("id", "bad"));
+
+    assertThrows(BadRequestResponse.class, () -> {
+      todoController.getTodo(ctx);
+    });
+  }
+
+  @Test
+  public void GetTodoWithNonexistentId() throws IOException {
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/todos/:id", ImmutableMap.of("id", "58af3a600343927e48e87335"));
+
+    assertThrows(NotFoundResponse.class, () -> {
+      todoController.getTodo(ctx);
+    });
   }
 
 }
