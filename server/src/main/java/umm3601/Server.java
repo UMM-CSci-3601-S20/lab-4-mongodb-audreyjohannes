@@ -69,6 +69,10 @@ public class Server {
     // List users, filtered using query parameters
     server.get("api/todos", todoController::getTodos);
 
+    // Add new todo
+    server.post("api/todos/new", todoController::addNewTodo);
+
+
 
     server.exception(Exception.class, (e, ctx) -> {
       ctx.status(500);

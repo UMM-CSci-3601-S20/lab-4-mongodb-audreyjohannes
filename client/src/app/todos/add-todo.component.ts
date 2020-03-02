@@ -21,12 +21,12 @@ export class AddTodoComponent implements OnInit {
 
   // not sure if this owner is magical and making it be found or if I'm missing something,
   // but this is where the red text that shows up (when there is invalid input) comes from
-  add_todo_validation_messages= {
+  add_todo_validation_messages = {
     owner: [
       {type: 'required', message: 'Owner is required'},
       {type: 'minlength', message: 'Owner must be at least two characters long'},
       {type: 'maxlength', message: 'Owner cannot be more than 35 characters long'},
-      {type: 'pattern', message: 'Owner must contain only numbers and letters'},
+      {type: 'pattern', message: 'Owner must contain only numbers and letters'}
     ],
 
     status: [
@@ -35,17 +35,17 @@ export class AddTodoComponent implements OnInit {
     ],
 
     body: [
+      {type: 'required', message: 'Body is required'},
       {type: 'minlength', message: 'Owner must be at least one character long'},
       {type: 'maxlength', message: 'Owner cannot be more than 150 characters long'},
-      {type: 'pattern', message: 'Owner must contain only numbers and letters'},
-      {type: 'required', message: 'Body is required'}
+      {type: 'pattern', message: 'Owner must contain only numbers and letters'}
     ],
 
     category: [
       {type: 'required', message: 'Category is required' },
       {type: 'pattern', message: 'Owner must contain only numbers and letters'},
       {type: 'minlength', message: 'Category must be at least one character long'},
-      {type: 'maxlength', message: 'Category cannot be more than 35 characters long'},
+      {type: 'maxlength', message: 'Category cannot be more than 35 characters long'}
     ]
   };
 
@@ -54,28 +54,26 @@ export class AddTodoComponent implements OnInit {
     // add todo form validations
     this.addTodoForm = this.fb.group({
       // We allow alphanumeric input and limit the length for owner.
-      owner: new FormControl('owner', Validators.compose([
+      owner: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(35),
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
       ])),
 
-
-      status: new FormControl('status', Validators.compose([
+      status: new FormControl('Complete', Validators.compose([
         Validators.required,
         Validators.pattern('^(complete|incomplete)$'),
       ])),
 
-
-      body: new FormControl('body', Validators.compose([
+      body: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(150),
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
        ])),
 
-      category: new FormControl('category', Validators.compose([
+      category: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(35),
@@ -88,7 +86,6 @@ export class AddTodoComponent implements OnInit {
   ngOnInit() {
     this.createForms();
   }
-
 
   submitForm() {
     this.todoService.addTodo(this.addTodoForm.value).subscribe(newID => {
