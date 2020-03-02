@@ -11,8 +11,8 @@ is potentially helpful and contributed to the shaping of this example -->
         <mat-card-content fxLayout="column">
           <mat-form-field>
             <mat-label>Owner</mat-label>
-            <input matInput id="ownerField" placeholder="Owner" formControlOwner="owner"
-                  required>
+            <input matInput #input id="ownerField" placeholder="Owner" formControlOwner="owner"
+            required>
                   <mat-error *ngFor="let validation of add_todo_validation_messages.owner">
                     <mat-error class="error-message" id="owner-error"
                               *ngIf="addTodoForm.get('owner').hasError(validation.type) && (addTodoForm.get('owner').dirty || addTodoForm.get('owner').touched)">
@@ -24,8 +24,8 @@ is potentially helpful and contributed to the shaping of this example -->
           <mat-form-field>
             <mat-label>Status</mat-label>
             <mat-select id="statusField" required formControlStatus="status">
-              <mat-option value="complete">Complete</mat-option>
-              <mat-option value="incomplete">Incomplete</mat-option>
+              <mat-option value=true>Complete</mat-option>
+              <mat-option value=false>Incomplete</mat-option>
             </mat-select>
             <mat-error *ngIf="addTodoForm.get('status').hasError('required')">You must make a selection</mat-error>
             <mat-error *ngIf="addTodoForm.get('status').hasError('pattern') && !addTodoForm.get('status').hasError('required')">

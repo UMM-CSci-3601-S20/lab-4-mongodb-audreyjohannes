@@ -80,7 +80,7 @@ const MATERIAL_MODULES: any[] = [
   ],
   providers: [
     UserService,
-    TodoService,
+    TodoService
   ],
   bootstrap: [AppComponent]
 })

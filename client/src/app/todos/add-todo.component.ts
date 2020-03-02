@@ -21,7 +21,7 @@ export class AddTodoComponent implements OnInit {
 
   // not sure if this owner is magical and making it be found or if I'm missing something,
   // but this is where the red text that shows up (when there is invalid input) comes from
-  add_todo_validation_messages = {
+  add_todo_validation_messages= {
     owner: [
       {type: 'required', message: 'Owner is required'},
       {type: 'minlength', message: 'Owner must be at least two characters long'},
@@ -31,7 +31,7 @@ export class AddTodoComponent implements OnInit {
 
     status: [
       { type: 'required', message: 'Status is required' },
-      { type: 'pattern', message: 'Status must be Complete or Incomplete' },
+      { type: 'pattern', message: 'Status must be Complete or Incomplete' }
     ],
 
     body: [
@@ -63,7 +63,7 @@ export class AddTodoComponent implements OnInit {
 
       status: new FormControl('Complete', Validators.compose([
         Validators.required,
-        Validators.pattern('^(complete|incomplete)$'),
+        Validators.pattern('^(true|false)$'),
       ])),
 
       body: new FormControl('', Validators.compose([
