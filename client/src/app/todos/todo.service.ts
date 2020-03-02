@@ -22,6 +22,10 @@ export class TodoService {
       if (filters.owner) {
         httpParams = httpParams.set('owner', filters.owner);
       }
+      if (filters.status) {
+        httpParams = httpParams.set('status', filters.status.toString());
+      }
+
     }
     return this.httpClient.get<Todo[]>(this.todoUrl, {
       params: httpParams,
@@ -54,6 +58,13 @@ export class TodoService {
         return todo.owner.toLowerCase().indexOf(filters.owner) !== -1;
       });
     }
+
+    // Filter by status
+    // if (filters.status) {
+    //   filteredTodos = filteredTodos.filter(todo => {
+    //     return todo.status === filters.status;
+    //   });
+    // }
     return filteredTodos;
   }
 }
