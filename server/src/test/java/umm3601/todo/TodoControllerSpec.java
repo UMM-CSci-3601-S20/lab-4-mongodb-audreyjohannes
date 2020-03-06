@@ -334,6 +334,26 @@ public class TodoControllerSpec {
   }
 
   @Test
+  public void GetTodosByStatus() throws IOException {
+
+    // Set the query string to test with
+    mockReq.setQueryString("status=true");
+
+    // Create our fake Javalin context
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/status");
+
+    todoController.getTodos(ctx);
+
+    assertEquals(200, mockRes.getStatus()); // The response status should be 200
+
+    String result = ctx.resultString();
+
+    for (Todo todo : JavalinJson.fromJson(result, Todo[].class)) {
+      assertEquals(true, todo.status); // Every todo should have status true
+    }
+  }
+
+  @Test
   public void NonExistentOwner() throws IOException {
 
     // Set the query string to test with

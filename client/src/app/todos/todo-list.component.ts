@@ -16,7 +16,7 @@ export class TodoListComponent implements OnInit {
 
 
   public todoOwner: string;
-  public todoStatus: string;
+  public todoStatus: boolean;
   public todoBody: string;
   public todoCategory: string;
   public todoOrderBy: string;
@@ -38,7 +38,8 @@ export class TodoListComponent implements OnInit {
     this.todoService.getTodos({
       owner: this.todoOwner,
       category: this.todoCategory,
-      body: this.todoBody,
+      status: this.todoStatus,
+      body: this.todoBody
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -48,18 +49,8 @@ export class TodoListComponent implements OnInit {
   }
 
  public updateFilter() {
-    // if (this.todoStatus === 'complete') {
-    //   this.filteredTodos = this.todoService.filterTodos(
-    //     this.serverFilteredTodos, { status: 'complete', contains: this.todoBody,
-    //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
-    // } else if (this.todoStatus === 'incomplete') {
-    //   this.filteredTodos = this.todoService.filterTodos(
-    //     this.serverFilteredTodos, { status: 'incomplete', contains: this.todoBody,
-    //     owner: this.todoOwner, category: this.todoCategory, orderBy: this.todoOrderBy, limit: this.todoLimit });
-    // } else {
       this.filteredTodos = this.todoService.filterTodos(
-        this.serverFilteredTodos, { owner: this.todoOwner, body: this.todoBody, category: this.todoCategory });
-   // }
+        this.serverFilteredTodos, {owner: this.todoOwner, category: this.todoCategory, status: this.todoStatus, body: this.todoBody});
   }
 
 

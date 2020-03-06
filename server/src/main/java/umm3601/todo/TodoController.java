@@ -92,8 +92,8 @@ public class TodoController {
     }
 
     if (ctx.queryParamMap().containsKey("status")) {
-        int targetAge = ctx.queryParam("status", Integer.class).get();
-        filters.add(eq("status", targetAge));
+        boolean targetStatus = ctx.queryParam("status", Boolean.class).get();
+        filters.add(eq("status", targetStatus));
     }
 
     if (ctx.queryParamMap().containsKey("category")) {
