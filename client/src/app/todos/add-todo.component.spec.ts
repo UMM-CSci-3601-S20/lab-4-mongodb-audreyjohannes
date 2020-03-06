@@ -169,7 +169,7 @@ describe('AddTodoComponent', () => {
     });
 
     it('should fail on really long body', () => {
-      bodyControl.setValue('x'.repeat(100));
+      bodyControl.setValue('x'.repeat(155));
       expect(bodyControl.valid).toBeFalsy();
       // Annoyingly, Angular uses lowercase 'l' here
       // when it's an upper case 'L' in `Validators.maxLength(2)`.
