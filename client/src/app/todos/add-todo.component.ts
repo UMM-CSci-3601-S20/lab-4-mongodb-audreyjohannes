@@ -36,16 +36,16 @@ export class AddTodoComponent implements OnInit {
 
     body: [
       {type: 'required', message: 'Body is required'},
-      {type: 'minlength', message: 'Owner must be at least two characters long'},
-      {type: 'maxlength', message: 'Owner cannot be more than 150 characters long'},
-      {type: 'pattern', message: 'Owner must contain only numbers and letters'}
+      {type: 'minlength', message: 'Body must be at least two characters long'},
+      {type: 'maxlength', message: 'Body cannot be more than 150 characters long'},
+      {type: 'pattern', message: 'Body must contain only numbers and letters'}
     ],
 
     category: [
       {type: 'required', message: 'Category is required' },
       {type: 'minlength', message: 'Category must be at least two characters long'},
       {type: 'maxlength', message: 'Category cannot be more than 35 characters long'},
-      {type: 'pattern', message: 'Owner must contain only numbers and letters'}
+      {type: 'pattern', message: 'Category must contain only numbers and letters'}
     ]
   };
 
