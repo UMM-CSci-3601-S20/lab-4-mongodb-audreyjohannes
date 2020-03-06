@@ -23,7 +23,7 @@ describe('Todo list', () => {
   });
 
   it('Should type something in the owner filter and check that it returned correct elements', () => {
-    page.typeInput('todo-owner-input', 'blANchE');
+    page.typeInput('todo-owner-input', 'blaNchE');
 
     // All of the todo list items should have the owner we are filtering by
     page.getTodoListItems().each(e => {
@@ -50,7 +50,7 @@ describe('Todo list', () => {
     });
   });
 
-   it('Should select an option of the status filter and check that it returned correct elements', () => {
+  it('Should select an option of the status filter and check that it returned correct elements', () => {
      page.selectMatSelectValue('todo-status-select', 'false');
 
      // All of the todo list items should have the status we are filtering by
@@ -59,7 +59,7 @@ describe('Todo list', () => {
      });
    });
 
-   it('Should select an option of the status filter and check that it returned correct elements', () => {
+  it('Should select an option of the status filter and check that it returned correct elements', () => {
      page.selectMatSelectValue('todo-status-select', 'true');
 
      // All of the todo list items should have the status we are filtering by
