@@ -11,11 +11,11 @@ is potentially helpful and contributed to the shaping of this example -->
         <mat-card-content fxLayout="column">
           <mat-form-field>
             <mat-label>Owner</mat-label>
-            <input matInput id="ownerField" placeholder="Owner" formControlOwner="owner"
-                  required>
+            <input matInput #input id="ownerField" placeholder="Owner" formControlName="owner"
+             required>
               <mat-error *ngFor="let validation of add_todo_validation_messages.owner">
-                <mat-error class="error-message" id="name-error"
-                          *ngIf="addTodoForm.get('name').hasError(validation.type) && (addTodoForm.get('name').dirty || addTodoForm.get('name').touched)">
+                <mat-error class="error-message" id="owner-error"
+                          *ngIf="addTodoForm.get('owner').hasError(validation.type) && (addTodoForm.get('owner').dirty || addTodoForm.get('owner').touched)">
                   {{validation.message}}
                 </mat-error>
               </mat-error>
@@ -23,9 +23,9 @@ is potentially helpful and contributed to the shaping of this example -->
 
           <mat-form-field>
             <mat-label>Status</mat-label>
-            <mat-select id="statusField" required formControlStatus="status">
-              <mat-option value="complete">Complete</mat-option>
-              <mat-option value="incomplete">Incomplete</mat-option>
+            <mat-select id="statusField" required formControlName="status">
+              <mat-option value=true>Complete</mat-option>
+              <mat-option value=false>Incomplete</mat-option>
             </mat-select>
             <mat-error *ngIf="addTodoForm.get('status').hasError('required')">You must make a selection</mat-error>
             <mat-error *ngIf="addTodoForm.get('status').hasError('pattern') && !addTodoForm.get('status').hasError('required')">
@@ -36,22 +36,24 @@ is potentially helpful and contributed to the shaping of this example -->
 
           <mat-form-field>
             <mat-label>Body</mat-label>
-            <input matInput id="bodyField" placeholder="Body" formControlBody="body"
-                  required>
-                  <mat-error *ngIf="addTodoForm.get('body').hasError('required')">You must add an body</mat-error>
-                  <mat-error *ngIf="addTodoForm.get('body').hasError('pattern') && !addTodoForm.get('body').hasError('required')">
-                    Your body is invalid
+            <input matInput #input id="bodyField" placeholder="Body" formControlName="body" required>
+                  <mat-error *ngFor="let validation of add_todo_validation_messages.body">
+                    <mat-error class="error-message" id="body-error"
+                              *ngIf="addTodoForm.get('body').hasError(validation.type) && (addTodoForm.get('body').dirty || addTodoForm.get('body').touched)">
+                      {{validation.message}}
+                    </mat-error>
                   </mat-error>
           </mat-form-field>
 
 
           <mat-form-field>
             <mat-label>Category</mat-label>
-            <input matInput id="categoryField" placeholder="Category" formControlCategory="category"
-                  required>
-                  <mat-error *ngIf="addTodoForm.get('category').hasError('required')">You must add an category</mat-error>
-                  <mat-error *ngIf="addTodoForm.get('category').hasError('pattern') && !addTodoForm.get('category').hasError('required')">
-                    Your owner is invalid
+            <input matInput #input id="categoryField" placeholder="Category" formControlName="category" required>
+                  <mat-error *ngFor="let validation of add_todo_validation_messages.owner">
+                    <mat-error class="error-message" id="category-error"
+                              *ngIf="addTodoForm.get('category').hasError(validation.type) && (addTodoForm.get('category').dirty || addTodoForm.get('category').touched)">
+                      {{validation.message}}
+                    </mat-error>
                   </mat-error>
           </mat-form-field>
 
